@@ -1,0 +1,101 @@
+// Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily =
+  '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = "#292b2c";
+
+var xValues = [
+  "An Giang",
+  "Bà rịa – Vũng tàu",
+  "Bắc Giang",
+  "Bắc Kạn",
+  "Bạc Liêu",
+  "Bắc Ninh",
+  "Bến Tre",
+  "Bình Định",
+  "Bình Dương",
+  "Bình Phước",
+  "Bình Thuận",
+  "Cà Mau",
+  "Cần Thơ",
+  "Cao Bằng ",
+  "Đà Nẵng",
+  "Đắk Lắk",
+  "Đắk Nông",
+  "Điện Biên",
+  "Đồng Nai",
+  "Đồng Tháp",
+  "Gia Lai",
+  "Hà Giang",
+  "Hà Nam",
+  "Hà Nội ",
+  "Hà Tĩnh",
+  "Hải Dương",
+  "Hải Phòng",
+  "Hậu Giang",
+  "Hòa Bình",
+  "Hưng Yên",
+  "Khánh Hòa",
+  "Kiên Giang",
+  "Kon Tum",
+  "Lai Châu",
+  "Lâm Đồng",
+  "Lạng Sơn",
+  "Lào Cai",
+  "Long An",
+  "Nam Định",
+  "Nghệ An",
+  "Ninh Bình",
+  "Ninh Thuận",
+  "Phú Thọ",
+  "Phú Yên",
+  "Quảng Bình",
+  "Quảng Nam",
+  "Quảng Ngãi",
+  "Quảng Ninh",
+  "Quảng Trị",
+  "Sóc Trăng",
+  "Sơn La",
+  "Tây Ninh",
+  "Thái Bình",
+  "Thái Nguyên",
+  "Thanh Hóa",
+  "Thừa Thiên Huế",
+  "Tiền Giang",
+  "Thành phố Hồ Chí Minh",
+  "Trà Vinh",
+  "Tuyên Quang",
+  "Vĩnh Long",
+  "Vĩnh Phúc",
+  "Yên Bái",
+];
+var yValues = [
+  50, 22, 38, 32, 38, 79, 85, 16, 72, 26, 48, 18, 24, 68, 13, 14, 23, 54, 35,
+  29, 71, 83, 16, 98, 44, 83, 92, 96, 60, 79, 33, 79, 93, 18, 91, 18, 21, 86,
+  11, 26, 19, 33, 57, 74, 83, 20, 97, 12, 35, 34, 95, 33, 15, 63, 24, 85, 86,
+  61, 95, 48, 42, 75, 33,
+];
+var barColors = ["red", "green", "blue", "orange", "brown"];
+
+new Chart("myChart", {
+  type: "horizontalBar",
+  data: {
+    labels: xValues,
+    datasets: [
+      {
+        backgroundColor: "blue",
+        data: yValues,
+      },
+    ],
+  },
+  options: {
+    legend: { display: false },
+    title: {
+      display: true,
+    },
+    scales: {
+      xAxes: [{ ticks: { min: 10, max: 100 } }],
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+});

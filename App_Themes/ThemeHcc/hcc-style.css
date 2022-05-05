@@ -1,0 +1,133 @@
+.SearchResult {
+    padding:10px;
+}
+.SearchResult table{
+
+}
+.hr_title{border-bottom:solid 1px #14b9d5}
+.box-name {
+    cursor: pointer;
+    float: right;
+    font-size: 12px;
+    line-height: 25px;
+    position: relative;
+    color:#555555;
+}
+.box-name .box-function {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    width: 200px;
+    z-index: 100;
+}
+.box-name:hover .box-function {
+    display: block;
+}
+.box-function .MenuArea {
+    padding: 10px;
+}
+.box-function ul {
+    list-style: outside none none;
+    margin: 0;
+}
+.box-function li {
+    border-bottom: 1px dotted #ccc;
+}
+.box-function a {
+    color: #46629e;
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 30px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.box-function a:hover {
+    background: none repeat scroll 0 0 #46629e;
+    color: #fff;
+}
+.box-function a:hover i {
+    color: #fff;
+    font-size: 18px;
+}
+.box-function a i {
+    color: #46629e;
+    display: inline-block;
+    font-size: 14px;
+    width: 11%;
+}
+.partner p
+{
+    font-size:12px;
+    font-weight:bold;
+} 
+.SearchResult table  tr th {
+	background-color: #F2F2F2;
+    text-align:center;
+    vertical-align:central;
+}
+.SearchResult table  tr td,
+.SearchResult table  tr th {
+	padding: 10px;
+	border: 1px solid #DDD;
+}
+.box
+{
+    background: none repeat scroll 0 0 #fff;
+    /*border: 1px solid #d5d5d5;*/
+    /*box-shadow: 0 0 3px -2px #666;*/
+    margin-bottom: 10px;
+    border-radius: 3px;
+    margin-top:10px;
+}
+.box .title-SubPage .title
+{
+    color: #000;
+    font-size: 24px;
+    border-bottom: solid 2px #14b9d5;
+    padding: 5px 0px 15px 0px;
+    position: relative;
+}
+.title-SubPage
+{
+    font-family: arial;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 15px;
+}
+.title-news
+{
+    margin: 15px 0px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Open Sans Condensed;
+}
+
+.News_Detail_Summary {
+    color: #000;
+    font-style: italic;
+    padding: 15px 0;
+}
+.Login_Inline
+{
+    float:right;
+}
+.banner_slider
+{
+    background-color:#e0e0e0;
+}
+.Banner_contain
+{
+    margin:0px auto;
+    width:1140px;
+}
+ .ui-state-default {
+        background-color: white;
+        width:100%;
+        padding: 2px 8px;
+        font-family: "Open Sans", sans-serif;
+    }

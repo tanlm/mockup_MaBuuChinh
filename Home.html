@@ -1,0 +1,881 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+        Mã bưu chính quốc gia
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet" type="text/css">
+    <script src="Script/hccportal/jquery.min.js"></script>
+    <script src="Script/hccportal/bootstrap.min.js"></script>
+    <script src="Script/Dropdown/jquery-ui.js"></script>
+    <script src="Script/Dropdown/jsdropdown.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script type="text/javascript" language="javascript">
+        // function SetUniqueRadioButton(strGroupName, current, gotoLink) {
+        //     $("input[name$='" + strGroupName + "']").attr('checked', false);
+        //     current.checked = true;
+        //     //             if (gotoLink != "") {
+        //     //                 moveWindow(gotoLink)
+        //     //             }
+        // }
+        // function moveWindow(Link1) { window.location.hash = "#" + Link1.toString(); }
+
+        // function warning(a) {
+        //     $('#warning').show();
+        //     $('#warning span').html(a);
+        //     setTimeout(
+        //         function () {
+        //             $('#warning').fadeOut()
+        //         }, 3000)
+        // }
+
+        // This example adds a search box to a map, using the Google Place Autocomplete
+        // feature. People can enter geographical searches. The search box will return a
+        // pick list containing a mix of places and predicted search terms.
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+        function initAutocomplete() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -33.8688, lng: 151.2195 },
+                zoom: 13,
+                mapTypeId: "roadmap",
+            });
+            // Create the search box and link it to the UI element.
+            const input = document.getElementById("pac-input");
+            const searchBox = new google.maps.places.SearchBox(input);
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            let markers = [];
+
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach((marker) => {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                const bounds = new google.maps.LatLngBounds();
+
+                places.forEach((place) => {
+                    if (!place.geometry || !place.geometry.location) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+
+                    const icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25),
+                    };
+
+                    // Create a marker for each place.
+                    markers.push(
+                        new google.maps.Marker({
+                            map,
+                            icon,
+                            title: place.name,
+                            position: place.geometry.location,
+                        })
+                    );
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+        }
+
+        window.initAutocomplete = initAutocomplete;
+
+        function myFunction() {
+            var x = document.getElementById("instructions");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+    <link href="App_Themes/ThemeHcc/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/c3autocomplete.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/c4customizeACP.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/cssslider/slick.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/cssslider/slick-theme.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/customizeACP.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/customizeTable.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/fixedColumns.dataTables.min.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/hcc-style.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/jquery.datetimepicker.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/paging.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/style.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/tthc1.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/tthc.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/vnp-style.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/zhcc-style.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/zmbc.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/zmbcautocomplete.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/zmbccustomizeACP.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/zstyle.css" type="text/css" rel="stylesheet">
+    <link href="App_Themes/ThemeHcc/styletml.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <form>
+        <div class="row margin0 MBC-banner">
+            <div class="container" style="position:relative">
+                <div class="MBC-languages">
+                    <div class="text-right menutopringht">
+                        <div class="text-center">
+                            <a href="#">
+                                <img alt="flagvietnam" src="App_Themes/ThemeHcc/img/vietnamflag.png"><br>
+                                <label style="font-size: 11px; color: #f5f5f5">VNI</label>
+                            </a>
+                        </div>
+                        <label style="margin:0 5px">|</label>
+                        <div class="text-center">
+                            <a href="#">
+                                <img alt="flagengland" src="App_Themes/ThemeHcc/img/englandflag.png"><br>
+                                <label style="font-size: 11px; color: #f5f5f5">ENG</label>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-left">
+                    <div><img src="App_Themes/ThemeHcc/img/quochuy.png" class="MBC-quochuy"></div>
+                    <div class="MBC-Header-Title">
+                        <div>
+                            <h2 class="MBC-title">TRANG THÔNG TIN ĐIỆN TỬ</h2>
+                        </div>
+                        <div>
+                            <h1 class="MBC-title"><b>TRA CỨU MÃ BƯU CHÍNH QUỐC GIA</b></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Menu-->
+        <div style="width: 100%; background-color: #015ab4">
+            <div class="container">
+                <ul class="nav nav-tabs MBC-nav">
+                    <li role="presentation">
+                        <a href="Home.html">
+                            <i class="fa fa-home" aria-hidden="true" style="font-size:19px"></i>
+                        </a>
+                    </li>
+                    <li role="presentation"><a href="Home.html">Trang chủ</a></li>
+                    <li role="presentation"><a href="Introduction.html">Giới thiệu</a></li>
+                    <li role="presentation"><a href="LegalDocument.html">Văn bản</a></li>
+                    <li role="presentation"><a href="SummaryStatistics.html">Tổng hợp - thống kê</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="row margin0">
+            <div id="ctl00_DefaultZone">
+                <div class="container text-center">
+                    <img class="logo" src="App_Themes/ThemeHcc/img/logobotttt.png" alt="logobotttt">
+                    <h1 class="TitleMBC">MÃ BƯU CHÍNH QUỐC GIA VIỆT NAM</h1>
+                    <div class="row margin0">
+                        <div class="col-lg-8 col-lg-offset-2 padding0">
+                            <div class="row margin0">
+                                <div class="col-lg-10 col-md-9 col-sm-9">
+                                    <input name="ctl00$ctl07$txtMBC" type="text" id="ctl00_ctl07_txtMBC"
+                                        class="form-control textboxAuto MBC-input-search ui-autocomplete-input"
+                                        autocomplete="off">
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-3 text-center">
+                                    <input type="submit" name="ctl00$ctl07$btntimkiem" value="Tìm kiếm"
+                                        id="ctl00_ctl07_btntimkiem" class="btn MBC-button">
+                                </div>
+                            </div>
+                            <div class="row margin0">
+                                <!-- google map -->
+                                <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+                                <div id="map"></div>
+                            </div>
+                            <div class="row margin0">
+                                <div style="margin-top: 10px;display: inline;"><a download=""
+                                        href="https://mabuuchinh.vn/Images/danhbamabuuchinhquocgia.pdf">Tải về bộ mã tại
+                                        đây</a>
+                                </div>
+                                <div style="display: inline;">
+                                    <a type="media_type" onclick="myFunction()">Xem hướng dẫn tra cứu phần mềm mã bưu chính</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TUTORIAL -->
+                <div class="container content" id="instructions" style="display: none;">
+                    <div class="box">
+                        <div class="title-SubPage">
+                            <div class="title">
+                                HƯỚNG DẪN TRA CỨU PHẦN MỀM MÃ BƯU CHÍNH<span style="position: absolute;
+                        height: 2px; background-color: #F90; display: block; width: 30%; bottom: -2px;">
+                                </span>
+                            </div>
+                            <div class="middlepage">
+                                <div>
+                                    <div class="title-news">
+                                        <span id="ctl00_ctl06_lblTitle" class="Detail_Title"></span>
+                                    </div>
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td valign="top" class="News_Detail_Summary">
+                                                    <span id="ctl00_ctl06_lblSummary"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="5">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="News_Content" valign="top">
+                                                    <span id="ctl00_ctl06_lblContent">
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: justify;">
+                                                            <span style="font-family: Tahoma; font-size: 18px;"><strong>1.
+                                                                    Tra cứu trên các trang thông tin điện
+                                                                    tử</strong></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span style="font-family: Tahoma; font-size: 18px;"><strong>&nbsp;
+                                                                    &nbsp; &nbsp; </strong>-
+                                                                http://mabuuchinh.vn</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span style="font-family: Tahoma; font-size: 18px;"><strong
+                                                                    style="color: #414042; font-family: Tahoma; font-size: large; text-align: justify; background-color: #ffffff;">&nbsp;
+                                                                    &nbsp; &nbsp;&nbsp;</strong><span
+                                                                    style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">-
+                                                                    http://postcode.vn</span></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span
+                                                                style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; - Cổng thông tin điện tử của Bộ thông
+                                                                tin
+                                                                và Truyền thông: http://mic.gov.vn</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span
+                                                                style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; Ví dụ hướng dẫn tra cứu trên trang :
+                                                                http://mabuuchinh.vn</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span
+                                                                style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">&nbsp;
+                                                                &nbsp;a) Tra cứu Mã bưu chính khi có tên đối tượng
+                                                                gán
+                                                                mã (phường/xã và đơn vị hành chính tương đương; điểm
+                                                                phục vụ thuộc mạng bưu chính công cộng, mạng bưu
+                                                                chính
+                                                                phục vụ cơ quan Đảng, Nhà nước; cơ quan đoàn thể của
+                                                                Việt Nam; cơ quan ngoại giao và các tổ chức quốc tế
+                                                                tại
+                                                                Việt Nam).</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span
+                                                                style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; Tại ô "Tìm kiếm", nhập tên "Đối tượng
+                                                                gán
+                                                                mã"</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span
+                                                                style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; Ví dụ 1:&nbsp;</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span
+                                                                style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; + Tại ô "Tìm kiếm", nhập
+                                                                "<strong>Phường
+                                                                    Liễu Giai</strong>", thì kết quả tra được Mã bưu
+                                                                chính của phường Liễu Giai, quận Ba Đình, thành phố
+                                                                Hà
+                                                                Nội là <strong>11106.</strong></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span
+                                                                style="font-size: large; text-align: justify; background-color: #ffffff; font-family: Tahoma; color: #414042;">+
+                                                                Tại ô "Tìm kiếm", nhập "<strong>Tổng lãnh sự quán
+                                                                    Thụy
+                                                                    Sỹ</strong>", thì kết quả tra được Mã bưu chính
+                                                                của
+                                                                Tổng lãnh sự quán Thụy Sỹ là
+                                                                <strong>70222.</strong></span></p>
+                                                        <p
+                                                            style="color: #414042; background-color: #ffffff; text-align: left;">
+                                                            <span style="font-family: Tahoma; font-size: 18px;"><strong>&nbsp;
+                                                                    &nbsp;</strong>b) Tra cứu để xác định đối tượng
+                                                                gán
+                                                                mã khi có Mã bưu chính</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span style="font-family: Tahoma; font-size: 18px;">&nbsp;
+                                                                &nbsp; &nbsp; Ví dụ 2:&nbsp;</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            <span style="font-family: Tahoma; font-size: 18px;">&nbsp;
+                                                                &nbsp; &nbsp; + Tại ô "Tìm kiếm", nhập
+                                                                "<strong>10046</strong>", thì kết quả tra được đối
+                                                                tượng
+                                                                gán mã là&nbsp;<strong>Bộ thông tin và Truyền
+                                                                    thông.</strong></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: left;">
+                                                            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span
+                                                                style="font-size: large; font-family: Tahoma;">+ Tại
+                                                                ô
+                                                                "Tìm kiếm", nhập "<strong>90251</strong>", thì kết
+                                                                quả
+                                                                tra được đối tượng gán mã là&nbsp;<strong>Bưu cục Mỹ
+                                                                    Luông</strong>, huyện Chợ Mới, tỉnh An
+                                                                Giang.</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff; text-align: justify;">
+                                                            <span style="font-family: Tahoma; font-size: 18px;"><strong>2.
+                                                                    Hướng dẫn cách ghi Mã bưu chính</strong></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff;">
+                                                            <span style="font-family: Tahoma;"><em>&nbsp; &nbsp;
+                                                                    &nbsp;&nbsp;</em><span style="font-size: 18px;">1.
+                                                                    Địa chỉ người sử dụng dịch vụ bưu chính (người
+                                                                    gửi
+                                                                    và người nhận) phải được thể hiện rõ ràng trên
+                                                                    bưu
+                                                                    gửi (phong bì thư, kiện, gói hàng hóa) hoặc trên
+                                                                    các
+                                                                    ấn phẩm, tài liệu liên quan.</span></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff;">
+                                                            <span
+                                                                style="background-color: #ffffff; font-family: Tahoma; font-size: 18px; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; 2. Mã bưu chính là một thành tố không
+                                                                thể
+                                                                thiếu trong địa chỉ người sử dụng dịch vụ bưu chính
+                                                                (người gửi và người nhận), được ghi tiếp theo sau
+                                                                tên
+                                                                tỉnh/ thành phố và được phân cách với tên tỉnh/thành
+                                                                phố
+                                                                ít nhất 01 ký tự trống.</span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff;">
+                                                            <span
+                                                                style="background-color: #ffffff; font-family: Tahoma; font-size: 18px; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; 3<span
+                                                                    style="background-color: #ffffff; font-family: Tahoma; color: #414042;">.
+                                                                    Mã bưu chính phải được in hoặc viết tay rõ ràng,
+                                                                    dễ
+                                                                    đọc</span></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; font-family: Roboto-Regular; background-color: #ffffff;">
+                                                            <span
+                                                                style="background-color: #ffffff; font-family: Tahoma; font-size: 18px; color: #414042;">&nbsp;
+                                                                &nbsp; &nbsp; 4<span
+                                                                    style="background-color: #ffffff; font-family: Tahoma; color: #414042;">.Đối
+                                                                    với bưu gửi có ô dành riêng cho Mã bưu chính ở
+                                                                    phần
+                                                                    ghi địa chỉ người gửi, người nhận thì ghi rõ Mã
+                                                                    bưu
+                                                                    chính, trong đó mỗi ô chỉ ghi một chữ số và các
+                                                                    chữ
+                                                                    số phải được ghi rõ ràng, dễ đọc, không gạch
+                                                                    xóa.</span></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; background-color: #ffffff; text-align: center;">
+                                                            <span style="font-family: Tahoma; font-size: 13px;"><em>Mẫu
+                                                                    1: Bưu gửi không có ô dành riêng cho Mã bưu
+                                                                    chính</em></span>
+                                                        </p>
+                                                        <p
+                                                            style="color: #414042; background-color: #ffffff; text-align: center;">
+                                                            <span style="font-family: Tahoma; font-size: 13px;"><em><img
+                                                                        alt="" src="App_Themes/ThemeHcc/img/b.jpg"
+                                                                        style="width: 800px; height: 497px;"></em></span>
+                                                        </p>
+                                                        <p style="text-align: center;"><em
+                                                                style="color: #414042; font-family: Tahoma; font-size: small; text-align: center; background-color: #ffffff;">&nbsp;</em>
+                                                        </p>
+                                                        <p style="text-align: center;"><em
+                                                                style="color: #414042; font-family: Tahoma; font-size: small; text-align: center; background-color: #ffffff;">Mẫu
+                                                                2: Bưu gửi có ô dành riêng cho Mã bưu chính</em></p>
+                                                        <p style="text-align: center;"><em
+                                                                style="color: #414042; font-family: Tahoma; font-size: small; text-align: center; background-color: #ffffff;"><img
+                                                                    alt="" src="App_Themes/ThemeHcc/img/c.jpg"
+                                                                    style="width: 800px; height: 492px;"></em></p>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container content">
+                    <div class="box">
+                        <div class="row">
+                            <table id="table-home">
+                                <tr>
+                                    <td>
+                                        <div class="title-SubPage">
+                                            <div class="title">
+                                                Mã bưu chính của 63 tỉnh thành Việt Nam
+                                                <span
+                                                    style="position: absolute;
+                                                        height: 2px; background-color: #F90; display: block; width: 30%; bottom: -2px;">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <table border="1" cellpadding="1" cellspacing="1" style="width:500px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="text-align: center;">STT</td>
+                                                        <td style="text-align: center;">Tỉnh/Thành Phố</td>
+                                                        <td style="text-align: center;">Mã Bưu Chính</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td style="text-align: center;">An Giang</td>
+                                                        <td style="text-align: center;">90000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">2</td>
+                                                        <td style="text-align: center;">Bắc Giang</td>
+                                                        <td style="text-align: center;">26000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">3</td>
+                                                        <td style="text-align: center;">Bắc Kạn</td>
+                                                        <td style="text-align: center;">23000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">4</td>
+                                                        <td style="text-align: center;">Bạc Liêu</td>
+                                                        <td style="text-align: center;">97000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">5</td>
+                                                        <td style="text-align: center;">Bắc Ninh</td>
+                                                        <td style="text-align: center;">16000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">6</td>
+                                                        <td style="text-align: center;">Bà Rịa – Vũng Tàu</td>
+                                                        <td style="text-align: center;">78000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">7</td>
+                                                        <td style="text-align: center;">Bến Tre</td>
+                                                        <td style="text-align: center;">86000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">8</td>
+                                                        <td style="text-align: center;">Bình Định</td>
+                                                        <td style="text-align: center;">55000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">9</td>
+                                                        <td style="text-align: center;">Bình Dương</td>
+                                                        <td style="text-align: center;">75000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">10</td>
+                                                        <td style="text-align: center;">Bình Phước</td>
+                                                        <td style="text-align: center;">67000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">11</td>
+                                                        <td style="text-align: center;">Bình Thuận</td>
+                                                        <td style="text-align: center;">77000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">12</td>
+                                                        <td style="text-align: center;">Cà Mau</td>
+                                                        <td style="text-align: center;">98000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">13</td>
+                                                        <td style="text-align: center;"><span
+                                                                style="text-align: center;">Cần Thơ</span>
+                                                        </td>
+                                                        <td style="text-align: center;">94000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">14</td>
+                                                        <td style="text-align: center;"><span
+                                                                style="text-align: center;">Cao Bằng</span>
+                                                        </td>
+                                                        <td style="text-align: center;">21000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">15</td>
+                                                        <td style="text-align: center;">Đà Nẵng</td>
+                                                        <td style="text-align: center;">50000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">16</td>
+                                                        <td style="text-align: center;"><span
+                                                                style="text-align: center;">Đắk Lắk</span>
+                                                        </td>
+                                                        <td style="text-align: center;">63000 - 64000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">17</td>
+                                                        <td style="text-align: center;"><span
+                                                                style="text-align: center;">Đắk Nông</span>
+                                                        </td>
+                                                        <td style="text-align: center;">65000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">18</td>
+                                                        <td style="text-align: center;">Điện Biên</td>
+                                                        <td style="text-align: center;">32000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">19</td>
+                                                        <td style="text-align: center;">Đồng Nai</td>
+                                                        <td style="text-align: center;">76000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">20</td>
+                                                        <td style="text-align: center;">Đồng Tháp</td>
+                                                        <td style="text-align: center;">81000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">21</td>
+                                                        <td style="text-align: center;">Gia Lai</td>
+                                                        <td style="text-align: center;">61000 - 62000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">22</td>
+                                                        <td style="text-align: center;">Hà Giang</td>
+                                                        <td style="text-align: center;">20000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">23</td>
+                                                        <td style="text-align: center;">Hà Nam</td>
+                                                        <td style="text-align: center;">18000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">24</td>
+                                                        <td style="text-align: center;">Hà Tĩnh</td>
+                                                        <td style="text-align: center;">45000 - 46000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">25</td>
+                                                        <td style="text-align: center;"><span
+                                                                style="text-align: center;">Hải Dương</span>
+                                                        </td>
+                                                        <td style="text-align: center;">03000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">26</td>
+                                                        <td style="text-align: center;"><span
+                                                                style="text-align: center;">Hải Phòng</span>
+                                                        </td>
+                                                        <td style="text-align: center;">04000 - 05000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">27</td>
+                                                        <td style="text-align: center;">Hà Nội</td>
+                                                        <td style="text-align: center;">10000 - 14000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">28</td>
+                                                        <td style="text-align: center;">Hậu Giang</td>
+                                                        <td style="text-align: center;">95000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">29</td>
+                                                        <td style="text-align: center;">Hòa Bình</td>
+                                                        <td style="text-align: center;">36000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">30</td>
+                                                        <td style="text-align: center;">TP. Hồ Chí Minh</td>
+                                                        <td style="text-align: center;">70000 - 74000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">31</td>
+                                                        <td style="text-align: center;">Hưng Yên</td>
+                                                        <td style="text-align: center;">17000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">32</td>
+                                                        <td style="text-align: center;">Khánh Hoà</td>
+                                                        <td style="text-align: center;">57000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">33</td>
+                                                        <td style="text-align: center;">Kiên Giang</td>
+                                                        <td style="text-align: center;">91000 - 92000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">34</td>
+                                                        <td style="text-align: center;">Kon Tum</td>
+                                                        <td style="text-align: center;">60000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">35</td>
+                                                        <td style="text-align: center;">Lai Châu<span
+                                                                style="white-space:pre"> </span></td>
+                                                        <td style="text-align: center;">30000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">36</td>
+                                                        <td style="text-align: center;"><span
+                                                                style="text-align: center;">Lâm Đồng</span>
+                                                        </td>
+                                                        <td style="text-align: center;">66000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">37</td>
+                                                        <td style="text-align: center;">Lạng Sơn</td>
+                                                        <td style="text-align: center;">25000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">38</td>
+                                                        <td style="text-align: center;">Lào Cai</td>
+                                                        <td style="text-align: center;">31000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">39</td>
+                                                        <td style="text-align: center;">Long An</td>
+                                                        <td style="text-align: center;">82000 - 83000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">40</td>
+                                                        <td style="text-align: center;">Nam Định</td>
+                                                        <td style="text-align: center;">07000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">41</td>
+                                                        <td style="text-align: center;">Nghệ An</td>
+                                                        <td style="text-align: center;">43000 - 44000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">42</td>
+                                                        <td style="text-align: center;">Ninh Bình</td>
+                                                        <td style="text-align: center;">08000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">43</td>
+                                                        <td style="text-align: center;">Ninh Thuận</td>
+                                                        <td style="text-align: center;">59000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">44</td>
+                                                        <td style="text-align: center;">Phú Thọ</td>
+                                                        <td style="text-align: center;">35000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">45</td>
+                                                        <td style="text-align: center;">Phú Yên</td>
+                                                        <td style="text-align: center;">56000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">46</td>
+                                                        <td style="text-align: center;">Quảng Bình</td>
+                                                        <td style="text-align: center;">47000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">47</td>
+                                                        <td style="text-align: center;">Quảng Nam</td>
+                                                        <td style="text-align: center;">51000 - 52000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">48</td>
+                                                        <td style="text-align: center;">Quảng Ngãi</td>
+                                                        <td style="text-align: center;">53000 - 54000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">49</td>
+                                                        <td style="text-align: center;">Quảng Ninh</td>
+                                                        <td style="text-align: center;">01000 - 02000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">50</td>
+                                                        <td style="text-align: center;">Quảng Trị</td>
+                                                        <td style="text-align: center;">48000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">51</td>
+                                                        <td style="text-align: center;">Sóc Trăng</td>
+                                                        <td style="text-align: center;">96000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">52</td>
+                                                        <td style="text-align: center;">Sơn La</td>
+                                                        <td style="text-align: center;">34000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">53</td>
+                                                        <td style="text-align: center;">Tây Ninh</td>
+                                                        <td style="text-align: center;">80000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">54</td>
+                                                        <td style="text-align: center;">Thái Bình</td>
+                                                        <td style="text-align: center;">06000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">55</td>
+                                                        <td style="text-align: center;">Thái Nguyên</td>
+                                                        <td style="text-align: center;">24000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">56</td>
+                                                        <td style="text-align: center;">Thanh Hoá</td>
+                                                        <td style="text-align: center;">40000 - 42000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">57</td>
+                                                        <td style="text-align: center;">Thừa Thiên Huế</td>
+                                                        <td style="text-align: center;">49000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">58</td>
+                                                        <td style="text-align: center;">Tiền Giang</td>
+                                                        <td style="text-align: center;">84000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">59</td>
+                                                        <td style="text-align: center;">Trà Vinh</td>
+                                                        <td style="text-align: center;">87000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">60</td>
+                                                        <td style="text-align: center;">Tuyên Quang</td>
+                                                        <td style="text-align: center;">22000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">61</td>
+                                                        <td style="text-align: center;">Vĩnh Long</td>
+                                                        <td style="text-align: center;">85000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">62</td>
+                                                        <td style="text-align: center;">Vĩnh Phúc</td>
+                                                        <td style="text-align: center;">15000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: center;">63</td>
+                                                        <td style="text-align: center;">Yên Bái</td>
+                                                        <td style="text-align: center;">33000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="title-SubPage">
+                                            <div class="title">
+                                                Bản đồ mã bưu chính
+                                                <span
+                                                    style="position: absolute;
+                                                        height: 2px; background-color: #F90; display: block; width: 30%; bottom: -2px;">
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <img src="App_Themes/ThemeHcc/img/BanDoMaBuuChinh.png" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- footer -->
+                <div class="footer MBC-footer padding0">
+                    <div class="container">
+                        <div class="MBC-footer-logo">
+                            <img src="App_Themes/ThemeHcc/img/logobotttt.jpg" class="MBC-footer-img">
+                        </div>
+                        <div class="MBC-footer-text">
+                            <p style="margin:0">
+                                <span>CƠ QUAN CHỦ QUẢN: BỘ THÔNG TIN VÀ TRUYỀN THÔNG (MIC)</span><br>
+                                <span>Liên hệ: Vụ Bưu chính, 18 Nguyễn Du, Hà Nội(Tòa nhà B, tầng 7) - ĐT:
+                                    024.38226625, Fax:
+                                    024.38226954, Email: vanthubuuchinh@mic.gov.vn</span>
+                            </p>
+                        </div>
+                        <div class="MBC-footer-logo" style="margin-right:0; margin-left: 0">
+                            <img style="width: 60px; height: auto" src="App_Themes/ThemeHcc/img/logovnp.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front"
+        style="display: none;">
+    </ul>
+    <div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly"
+        defer></script>
+    <script type="text/javascript">
+        //<![CDATA[
+
+    </script>
+</body>
+
+</html>
